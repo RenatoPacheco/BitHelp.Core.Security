@@ -36,9 +36,9 @@ namespace BitHelp.Core.Security
         }
 
         public static string Crypt(
-            string key,
+            string value,
             string vector,
-            string value)
+            string key)
         {
             if (String.IsNullOrWhiteSpace(value))
             {
@@ -84,9 +84,9 @@ namespace BitHelp.Core.Security
         }
 
         public static string Decrypt(
-            string key,
+            string value,
             string vector,
-            string value)
+            string key)
         {
             if (String.IsNullOrWhiteSpace(value))
             {
