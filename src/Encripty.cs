@@ -36,13 +36,13 @@ namespace BitHelp.Core.Security
             }
         }
 
-        public static string Decrypt(string texto, string senha, string chave)
+        public static string Decrypt(string value, string password, string key)
         {
             try
             {
                 using (Aes aes = new AesManaged())
                 {
-                    Rfc2898DeriveBytes deriveBytes = new Rfc2898DeriveBytes(senha, Encoding.UTF8.GetBytes(chave));
+                    Rfc2898DeriveBytes deriveBytes = new Rfc2898DeriveBytes(password, Encoding.UTF8.GetBytes(key));
 
                     aes.Key = deriveBytes.GetBytes(128 / 8);
                     aes.IV = aes.Key;
@@ -51,7 +51,7 @@ namespace BitHelp.Core.Security
                     {
                         using (CryptoStream decrypt = new CryptoStream(decryptionStream, aes.CreateDecryptor(), CryptoStreamMode.Write))
                         {
-                            byte[] encryptedData = Convert.FromBase64String(texto);
+                            byte[] encryptedData = Convert.FromBase64String(value);
 
                             decrypt.Write(encryptedData, 0, encryptedData.Length);
                             decrypt.Flush();

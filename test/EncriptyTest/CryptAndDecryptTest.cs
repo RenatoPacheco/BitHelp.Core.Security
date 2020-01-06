@@ -11,31 +11,31 @@ namespace BitHelp.Core.Security.Test.EncriptyTest
         public void Get_hash_with_alpha_numeric()
         {
             string text = "5MkqSmxmux6eRVv17nfusWck98lHtc";
-            string hash = EncriptyRijndael.Crypt(text, password, key);
+            string hash = Encripty.Crypt(text, password, key);
 
 
             Assert.NotEqual(text, hash);
-            Assert.Equal(text, EncriptyRijndael.Decrypt(hash, password, key));
+            Assert.Equal(text, Encripty.Decrypt(hash, password, key));
         }
 
         [Fact]
         public void Get_hash_with_alpha_numeric_and_other_letters()
         {
             string text = "5uPms(o0t!7kT~hxgP=xTtj-*6rSvdhI]hV^9tsx1S,*i_0!cn";
-            string hash = EncriptyRijndael.Crypt(text, password, key);
+            string hash = Encripty.Crypt(text, password, key);
 
             Assert.NotEqual(text, hash);
-            Assert.Equal(text, EncriptyRijndael.Decrypt(hash, password, key));
+            Assert.Equal(text, Encripty.Decrypt(hash, password, key));
         }
 
         [Fact]
         public void Get_hash_with_for_email()
         {
             string text = "myName1205@mysite.com";
-            string hash = EncriptyRijndael.Crypt(text, password, key);
+            string hash = Encripty.Crypt(text, password, key);
 
             Assert.NotEqual(text, hash);
-            Assert.Equal(text, EncriptyRijndael.Decrypt(hash, password, key));
+            Assert.Equal(text, Encripty.Decrypt(hash, password, key));
         }
 
         [Fact]
@@ -43,14 +43,14 @@ namespace BitHelp.Core.Security.Test.EncriptyTest
         {
             string text = "5uPms(o0t!7kT~hxgP=xTtj-*6rSvdhI]hV^9tsx1S,*i_0!cn";
             string textUpper = text.ToUpper();
-            string hash = EncriptyRijndael.Crypt(text, password, key);
-            string hashUpper = EncriptyRijndael.Crypt(textUpper, password, key);
+            string hash = Encripty.Crypt(text, password, key);
+            string hashUpper = Encripty.Crypt(textUpper, password, key);
 
             Assert.NotEqual(text, hash);
-            Assert.Equal(text, EncriptyRijndael.Decrypt(hash, password, key));
+            Assert.Equal(text, Encripty.Decrypt(hash, password, key));
 
             Assert.NotEqual(textUpper, hashUpper);
-            Assert.Equal(textUpper, EncriptyRijndael.Decrypt(hashUpper, password, key));
+            Assert.Equal(textUpper, Encripty.Decrypt(hashUpper, password, key));
 
             Assert.NotEqual(textUpper, text);
             Assert.NotEqual(hashUpper, hash);
@@ -61,14 +61,14 @@ namespace BitHelp.Core.Security.Test.EncriptyTest
         {
             string text = "5uPms(o0t!7kT~hxgP=xTtj-*6rSvdhI]hV^9tsx1S,*i_0!cn";
             string textLower = text.ToLower();
-            string hash = EncriptyRijndael.Crypt(text, password, key);
-            string hashLower = EncriptyRijndael.Crypt(textLower, password, key);
+            string hash = Encripty.Crypt(text, password, key);
+            string hashLower = Encripty.Crypt(textLower, password, key);
 
             Assert.NotEqual(text, hash);
-            Assert.Equal(text, EncriptyRijndael.Decrypt(hash, password, key));
+            Assert.Equal(text, Encripty.Decrypt(hash, password, key));
 
             Assert.NotEqual(textLower, hashLower);
-            Assert.Equal(textLower, EncriptyRijndael.Decrypt(hashLower, password, key));
+            Assert.Equal(textLower, Encripty.Decrypt(hashLower, password, key));
 
             Assert.NotEqual(textLower, text);
             Assert.NotEqual(hashLower, hash);
