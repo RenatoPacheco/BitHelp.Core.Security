@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <Version>0.1.0</Version>
+    <Authors>Renato Pacheco</Authors>
+    <PackageProjectUrl></PackageProjectUrl>
+    <NeutralLanguage>en</NeutralLanguage>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PackageOutputPath>../nuget</PackageOutputPath>
+    <Description>Project description.</Description>
+    <RepositoryType>Git</RepositoryType>
+    <RepositoryUrl>https://github.com/RenatoPacheco/BitHelp.Core.Security</RepositoryUrl>
+    <PackageReleaseNotes>Package release note.</PackageReleaseNotes>
+  </PropertyGroup>
+
+</Project>
