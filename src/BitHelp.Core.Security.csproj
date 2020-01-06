@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
@@ -16,6 +16,7 @@
 * Encripty
 * EncriptyRijndael
 * MD5Hash</PackageReleaseNotes>
+    <PackageLicenseUrl>https://licenses.nuget.org/MIT</PackageLicenseUrl>
   </PropertyGroup>
 
 </Project>
