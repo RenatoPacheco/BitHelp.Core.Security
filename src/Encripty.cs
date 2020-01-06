@@ -5,9 +5,9 @@ using System.Security.Cryptography;
 
 namespace BitHelp.Core.Security
 {
-    public class Encripty
+    public static class Encripty
     {
-        public string Encode(string value, string password, string key)
+        public static string Crypt(string value, string password, string key)
         {
             try
             {
@@ -36,7 +36,7 @@ namespace BitHelp.Core.Security
             }
         }
 
-        public string Decode(string texto, string senha, string chave)
+        public static string Decrypt(string texto, string senha, string chave)
         {
             try
             {

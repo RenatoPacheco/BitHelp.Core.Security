@@ -5,7 +5,7 @@ namespace BitHelp.Core.Security
 {
     public static class MD5Hash
     {
-        public static string Get(string value)
+        public static string Crypt(string value)
         {
             if (string.IsNullOrWhiteSpace(value))
                 return string.Empty;

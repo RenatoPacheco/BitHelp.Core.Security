@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 
 namespace BitHelp.Core.Security
 {
-    public class EncriptyRijndael
+    public static class EncriptyRijndael
     {
         private static Rijndael InitRijndael(
             string key, string vector)
@@ -35,7 +35,7 @@ namespace BitHelp.Core.Security
             return algoritmo;
         }
 
-        public static string Encode(
+        public static string Crypt(
             string key,
             string vector,
             string value)
@@ -83,7 +83,7 @@ namespace BitHelp.Core.Security
             return string.Concat(arrayHex);
         }
 
-        public static string Decode(
+        public static string Decrypt(
             string key,
             string vector,
             string value)
