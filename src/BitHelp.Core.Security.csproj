@@ -9,10 +9,13 @@
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageOutputPath>../nuget</PackageOutputPath>
-    <Description>Project description.</Description>
+    <Description>This project provides some security-oriented features such as encryptions.</Description>
     <RepositoryType>Git</RepositoryType>
     <RepositoryUrl>https://github.com/RenatoPacheco/BitHelp.Core.Security</RepositoryUrl>
-    <PackageReleaseNotes>Package release note.</PackageReleaseNotes>
+    <PackageReleaseNotes>Add class to crypt and decrypt:
+* Encripty
+* EncriptyRijndael
+* MD5Hash</PackageReleaseNotes>
   </PropertyGroup>
 
 </Project>
