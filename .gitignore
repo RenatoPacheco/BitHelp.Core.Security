@@ -364,7 +364,3 @@ healthchecksdb
 MigrationBackup/
 
 # End of https://www.gitignore.io/api/visualstudio,visualstudiocode
-
-# Personal Settings
-
-!nuget/*.nupkg
