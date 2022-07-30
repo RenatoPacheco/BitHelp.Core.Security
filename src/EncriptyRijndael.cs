@@ -15,17 +15,17 @@ namespace BitHelp.Core.Security
                    key.Length == 24 ||
                    key.Length == 32)))
             {
-                throw new Exception(
-                    "A chave de criptografia deve possuir " +
-                    "16, 24 ou 32 caracteres.");
+                throw new ArgumentException(
+                    "The encryption key must have " +
+                    "16, 24 or 32 characters.", nameof(key));
             }
 
             if (vector == null ||
                 vector.Length != 16)
             {
-                throw new Exception(
-                    "O vetor de inicialização deve possuir " +
-                    "16 caracteres.");
+                throw new ArgumentException(
+                    "The initialization vector must have " +
+                    "16 characters.", nameof(vector));
             }
 
             Rijndael algoritmo = Rijndael.Create();
@@ -42,36 +42,27 @@ namespace BitHelp.Core.Security
         {
             if (String.IsNullOrWhiteSpace(value))
             {
-                /*throw new Exception(
-                    "O conteúdo a ser encriptado não pode " +
-                    "ser uma string vazia.");*/
-
                 return string.Empty;
             }
 
-            using (Rijndael algoritmo = InitRijndael(
-                key, vector))
+            using (Rijndael algorithm = InitRijndael(key, vector))
             {
                 ICryptoTransform encryptor =
-                    algoritmo.CreateEncryptor(
-                        algoritmo.Key, algoritmo.IV);
+                    algorithm.CreateEncryptor(
+                        algorithm.Key, algorithm.IV);
 
-                using (MemoryStream streamResultado =
-                       new MemoryStream())
+                using (MemoryStream streamResult = new MemoryStream())
                 {
                     using (CryptoStream csStream = new CryptoStream(
-                        streamResultado, encryptor,
-                        CryptoStreamMode.Write))
+                        streamResult, encryptor, CryptoStreamMode.Write))
                     {
-                        using (StreamWriter writer =
-                            new StreamWriter(csStream))
+                        using (StreamWriter writer = new StreamWriter(csStream))
                         {
                             writer.Write(value);
                         }
                     }
 
-                    return ArrayBytesToHexString(
-                        streamResultado.ToArray());
+                    return ArrayBytesToHexString(streamResult.ToArray());
                 }
             }
         }
@@ -90,43 +81,38 @@ namespace BitHelp.Core.Security
         {
             if (String.IsNullOrWhiteSpace(value))
             {
-                /*throw new Exception(
-                    "O conteúdo a ser decriptado não pode " +
-                    "ser uma string vazia.");*/
                 return string.Empty;
             }
 
             if (value.Length % 2 != 0)
             {
-                /*throw new Exception(
-                    "O conteúdo a ser decriptado é inválido.");*/
                 return string.Empty;
             }
 
-            string textoDecriptografado = string.Empty;
-            Rijndael algoritmo = null;
+            string encryptedText = string.Empty;
+            Rijndael algorithm = null;
 
             try
             {
-                using (algoritmo = InitRijndael(
+                using (algorithm = InitRijndael(
                     key, vector))
                 {
                     ICryptoTransform decryptor =
-                        algoritmo.CreateDecryptor(
-                            algoritmo.Key, algoritmo.IV);
+                        algorithm.CreateDecryptor(
+                            algorithm.Key, algorithm.IV);
 
-                    using (MemoryStream streamTextoEncriptado =
+                    using (MemoryStream streamEncryptedText =
                         new MemoryStream(
                             HexStringToArrayBytes(value)))
                     {
                         using (CryptoStream csStream = new CryptoStream(
-                            streamTextoEncriptado, decryptor,
+                            streamEncryptedText, decryptor,
                             CryptoStreamMode.Read))
                         {
                             using (StreamReader reader =
                                 new StreamReader(csStream))
                             {
-                                textoDecriptografado =
+                                encryptedText =
                                     reader.ReadToEnd();
                             }
                         }
@@ -136,29 +122,29 @@ namespace BitHelp.Core.Security
             }
             catch
             {
-                textoDecriptografado = string.Empty;
+                encryptedText = string.Empty;
             }
             finally
             {
-                if (algoritmo != null)
-                    algoritmo.Clear();
+                if (algorithm != null)
+                    algorithm.Clear();
             }
-            return textoDecriptografado;
+            return encryptedText;
         }
 
         private static byte[] HexStringToArrayBytes(string content)
         {
-            int qtdeBytesEncriptados =
+            int countBytesEncript =
                 content.Length / 2;
-            byte[] arrayConteudoEncriptado =
-                new byte[qtdeBytesEncriptados];
-            for (int i = 0; i < qtdeBytesEncriptados; i++)
+            byte[] arrayContentEncript =
+                new byte[countBytesEncript];
+            for (int i = 0; i < countBytesEncript; i++)
             {
-                arrayConteudoEncriptado[i] = Convert.ToByte(
+                arrayContentEncript[i] = Convert.ToByte(
                     content.Substring(i * 2, 2), 16);
             }
 
-            return arrayConteudoEncriptado;
+            return arrayContentEncript;
         }
     }
 }
