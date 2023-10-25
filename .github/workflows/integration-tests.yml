@@ -91,9 +91,9 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         shell: powershell
         run: |
-          .\.sonar\scanner\dotnet-sonarscanner begin /k:"RenatoPacheco_BitHelp.Core.Security" /o:"renatopacheco" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="test\coverage.opencover.xml" /d:sonar.cs.vstest.reportsPaths="test\TestResults\report.trx"
+        .\.sonar\scanner\dotnet-sonarscanner begin /k:"RenatoPacheco_BitHelp.Core.Security" /o:"renatopacheco" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="test\coverage.opencover.xml" /d:sonar.cs.vstest.reportsPaths="test\TestResults\report.trx"
           dotnet restore
           dotnet build --configuration Release --no-restore
           dotnet test -l "trx;LogFileName=report.trx" /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
-          .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
+          .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
   # End analyze
