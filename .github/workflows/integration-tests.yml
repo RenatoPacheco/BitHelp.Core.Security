@@ -50,7 +50,7 @@ jobs:
         files: '**/coverage.cobertura.xml'
         flags: unittests
         name: codecov-umbrella
-        path_to_write_report: ./coverage/codecov_report.txt
+        directory: ./coverage/report/
         verbose: true
   # end of Test
   # Start analyze
