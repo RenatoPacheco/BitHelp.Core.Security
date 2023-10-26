@@ -50,7 +50,6 @@ jobs:
         files: '**/coverage.cobertura.xml'
         flags: unittests
         name: codecov-umbrella
-        directory: ./coverage/report/
         verbose: true
   # end of Test
   # Start analyze
